@@ -3,8 +3,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { errorHandler, notFound } from './middlewares';
-import router from './api';
+import { errorHandler, notFound } from './api/middleware';
+import router from './api/routes';
 
 
 config();
@@ -25,4 +25,5 @@ app.use('/api', router);
 
 app.use(notFound);
 app.use(errorHandler);
+
 export default app;

@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 config();
 export function notFound(req: Request, res: Response, next: NextFunction) {
     res.status(404);
-    const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
+    const error = new Error(`Not Found - ${req.originalUrl}`);
     next(error);
 }
 
@@ -13,6 +13,7 @@ export function errorHandler(err: Error, req: Request, res: Response, _next: Nex
     const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
     res.status(statusCode);
     res.json({
+        success:  false ,
         message: err.message,
         ...(process.env.NODE_ENV !== 'production' && { stack: err.stack }),
     });
